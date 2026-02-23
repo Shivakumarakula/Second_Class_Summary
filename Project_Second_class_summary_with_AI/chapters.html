@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapters | Smart Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="js/data.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --accent: #22d3ee;
+            --bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Animated Background */
+        .page-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 0% 100%, rgba(99, 102, 241, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* Chapter Card Styling */
+        .chapter-row {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .chapter-row:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--primary);
+            transform: scale(1.01) translateX(10px);
+            box-shadow: -10px 0 20px -10px var(--primary);
+        }
+
+        /* Number Badge */
+        .num-badge {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Staggered Entrance */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-item {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <div class="page-bg"></div>
+
+    <div class="max-w-4xl mx-auto">
+        <!-- Navigation -->
+        <nav class="mb-12">
+            <button onclick="history.back()" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors font-bold text-xs uppercase tracking-widest group">
+                <i class="fas fa-chevron-left group-hover:-translate-x-1 transition-transform"></i> 
+                Back to Subjects
+            </button>
+        </nav>
+
+        <!-- Header -->
+        <header class="mb-12 animate-item">
+            <h1 id="title" class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">
+                <!-- Injected via JS -->
+            </h1>
+            <div class="flex items-center gap-4">
+                <div class="h-1 w-20 bg-indigo-500 rounded-full"></div>
+                <p class="text-slate-400 font-medium" id="chapter-count">Loading chapters...</p>
+            </div>
+        </header>
+
+        <!-- Chapters List Container -->
+        <div id="chapters" class="space-y-4">
+            <!-- Dynamically populated -->
+        </div>
+
+        <!-- Empty State Info -->
+        <div id="empty-state" class="hidden py-20 text-center glass-card rounded-3xl animate-item">
+            <i class="fas fa-book-open text-5xl text-slate-700 mb-4"></i>
+            <p class="text-slate-500 italic">No chapters available for this subject yet.</p>
+        </div>
+    </div>
+
+    <script>
+        const p = new URLSearchParams(location.search);
+        const cls = p.get("class") || "1";
+        const subject = p.get("subject") || "";
+
+        // Header Styling
+        document.getElementById("title").innerHTML = `
+            <span class="text-slate-500 font-light">Class ${cls} /</span> ${subject}
+        `;
+
+        const container = document.getElementById("chapters");
+        
+        // Safety check for data
+        if (typeof chaptersData !== 'undefined' && chaptersData[cls] && chaptersData[cls][subject]) {
+            const list = chaptersData[cls][subject];
+            document.getElementById("chapter-count").innerText = `${list.length} Chapters Found`;
+
+            list.forEach((ch, index) => {
+                const row = document.createElement("div");
+                row.className = "chapter-row animate-item p-6 rounded-2xl flex items-center justify-between gap-4 group";
+                row.style.animationDelay = (index * 0.1) + "s";
+                
+                // Format index (e.g., 1 -> 01)
+                const displayIdx = (index + 1).toString().padStart(2, '0');
+
+                row.innerHTML = `
+                    <div class="flex items-center gap-6">
+                        <div class="num-badge w-12 h-12 flex-shrink-0 rounded-xl flex items-center justify-center text-white font-black text-lg">
+                            ${displayIdx}
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold group-hover:text-indigo-400 transition-colors">${ch.title}</h3>
+                            <p class="text-slate-500 text-sm mt-1 flex items-center gap-2">
+                                <i class="far fa-file-pdf"></i> Visual Study Material
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="hidden md:inline-block text-[10px] font-black tracking-widest text-slate-600 group-hover:text-slate-400">READ NOW</span>
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-indigo-500/20 transition-all">
+                            <i class="fas fa-play text-xs text-indigo-400"></i>
+                        </div>
+                    </div>
+                `;
+
+                row.onclick = () => {
+                    location.href = `chapter_view.html?pdf=${encodeURIComponent(ch.pdf)}`;
+                };
+
+                container.appendChild(row);
+            });
+        } else {
+            document.getElementById("empty-state").classList.remove("hidden");
+            document.getElementById("chapter-count").innerText = "0 Chapters Found";
+        }
+    </script>
+</body>
+</html>

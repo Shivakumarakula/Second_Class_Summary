@@ -1,0 +1,1267 @@
+index.html
+
+
+
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Learning | Future of Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --accent: #22d3ee;
+            --bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradient */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Custom Button */
+        .btn-glow {
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .btn-glow::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        .btn-glow:hover::after {
+            left: 120%;
+        }
+
+        /* Simple Loading bar for visual interest */
+        .progress-line {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 1.5s ease;
+        }
+
+        .tag-pill {
+            background: rgba(99, 102, 241, 0.2);
+            color: #c7d2fe;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="flex justify-between items-center p-6 max-w-7xl mx-auto">
+        <div class="text-2xl font-extrabold tracking-tighter flex items-center gap-2">
+            <span class="bg-gradient-to-r from-indigo-500 to-cyan-400 bg-clip-text text-transparent">SMART</span>LEARN <span></span> WITH <span class="bg-gradient-to-r from-indigo-500 to-cyan-400 bg-clip-text text-transparent">2ND CLASS HELPER</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-semibold text-slate-400">
+            <a href="#" class="hover:text-white transition-colors">Courses</a>
+            <a href="#" class="hover:text-white transition-colors">Mentors</a>
+            <a href="#" class="hover:text-white transition-colors">Pricing</a>
+        </div>
+       
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-16 pb-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="tag-pill mb-6 reveal">✨ The Future of Learning is Here</div>
+            <h1 class="text-5xl md:text-8xl font-extrabold mb-8 reveal leading-tight">
+                Learn <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent italic">Smartly</span><br>
+                For Young Minds 
+            </h1>
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 reveal">
+                Interactive visual experiences designed to turn complex concepts into child's play. Join 50,000+ students worldwide.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center reveal">
+                <button onclick="startLearning()" class="btn-glow px-10 py-4 bg-indigo-600 rounded-2xl font-bold text-lg shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transform hover:scale-105 active:scale-95 transition-all">
+                    Start Learning Now <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+                <button class="px-10 py-4 glass-card rounded-2xl font-bold text-lg hover:bg-slate-800 transition-all">
+                    Watch Demo
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating Decorative Elements -->
+        <div class="hidden lg:block absolute top-1/4 left-10 float-anim opacity-20">
+            <i class="fas fa-atom text-7xl text-indigo-500"></i>
+        </div>
+        <div class="hidden lg:block absolute bottom-1/4 right-10 float-anim opacity-20" style="animation-delay: -3s">
+            <i class="fas fa-brain text-7xl text-purple-500"></i>
+        </div>
+    </header>
+
+    <!-- Features Grid -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="glass-card p-8 rounded-3xl reveal">
+                <div class="w-14 h-14 bg-indigo-500/20 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-vr-cardboard text-2xl text-indigo-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Visual Learning</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    Interactive 3D models and simulations that make science and math come alive right in your browser.
+                </p>
+                <div class="mt-6 pt-6 border-t border-slate-800 flex justify-between items-center">
+                    <span class="text-xs font-bold text-indigo-400">LEARN MORE</span>
+                    <i class="fas fa-chevron-right text-xs text-slate-600"></i>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-card p-8 rounded-3xl reveal" style="transition-delay: 0.1s">
+                <div class="w-14 h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-gamepad text-2xl text-purple-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Gamified Path</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    Earn badges, unlock new levels, and compete with friends in a safe, educational environment.
+                </p>
+                <div class="mt-6 pt-6 border-t border-slate-800 flex justify-between items-center">
+                    <span class="text-xs font-bold text-purple-400">VIEW RANKINGS</span>
+                    <i class="fas fa-chevron-right text-xs text-slate-600"></i>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-card p-8 rounded-3xl reveal" style="transition-delay: 0.2s">
+                <div class="w-14 h-14 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-bolt text-2xl text-cyan-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Smart Analytics</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    Parents and students get real-time insights into learning patterns and focus areas.
+                </p>
+                <div class="mt-6 pt-6 border-t border-slate-800 flex justify-between items-center">
+                    <span class="text-xs font-bold text-cyan-400">DASHBOARD</span>
+                    <i class="fas fa-chevron-right text-xs text-slate-600"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Action Area -->
+    <section class="max-w-5xl mx-auto px-6 py-20 text-center">
+        <div class="glass-card p-12 rounded-[3rem] relative overflow-hidden">
+            <div class="relative z-10">
+                <h2 class="text-4xl font-bold mb-6">Ready to change the way you learn?</h2>
+                <p class="text-slate-400 mb-8 max-w-lg mx-auto">Join the educational revolution. No credit card required to start your first visual module.</p>
+                <div class="flex justify-center">
+                    <div class="w-full max-w-xs">
+                        <div class="progress-line rounded-full mb-4" id="loadBar"></div>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold" id="statusText">System Ready</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Background Decoration for CTA -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-600/10 blur-[100px] rounded-full"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-cyan-600/10 blur-[100px] rounded-full"></div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer class="p-10 text-center text-slate-600 text-sm">
+        <p>&copy; 2024 Smart Learning Initiative. Designed for the curious.</p>
+    </footer>
+
+    <script>
+        // Reveal Animations on Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+
+        // Initial reveal
+        window.onload = () => {
+            reveal();
+        };
+
+        // Simulated "Learning Start" interaction
+        function startLearning() {
+            const bar = document.getElementById('loadBar');
+            const status = document.getElementById('statusText');
+            
+            bar.style.width = '100%';
+            status.innerText = "Initializing Modules...";
+            status.style.color = "#22d3ee";
+
+            setTimeout(() => {
+                // In a real app, this would navigate to classes.html
+                // For this demo, we'll just show a success state
+                status.innerText = "Redirecting to Classroom...";
+                setTimeout(() => {
+                    location.href = 'classes.html';
+                }, 1000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
+
+
+subjects.html
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Subject | Smart Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="js/data.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --accent: #22d3ee;
+            --bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Mesh Gradient Background */
+        .mesh-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(34, 211, 238, 0.15) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* Subject Card Enhancements */
+        .subject-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.2);
+        }
+
+        .icon-box {
+            transition: all 0.5s ease;
+        }
+
+        .subject-card:hover .icon-box {
+            transform: rotate(12deg) scale(1.1);
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Entrance Stagger */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .stagger-item {
+            opacity: 0;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        /* Back Button Style */
+        .back-link {
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12 lg:p-20">
+
+    <div class="mesh-bg"></div>
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Breadcrumb & Back -->
+        <nav class="mb-10">
+            <button onclick="history.back()" class="back-link flex items-center gap-2 text-slate-400 font-bold uppercase tracking-widest text-xs">
+                <i class="fas fa-long-arrow-alt-left text-lg"></i> Back to Classes
+            </button>
+        </nav>
+
+        <!-- Header Section -->
+        <header class="mb-16">
+            <div class="inline-block px-4 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-black uppercase tracking-[0.2em] mb-4">
+                Personalized Learning
+            </div>
+            <h1 id="title" class="text-4xl md:text-7xl font-extrabold mb-4 tracking-tighter">
+                <!-- Injected via JS -->
+            </h1>
+            <p class="text-slate-400 text-lg max-w-xl">
+                Explore specialized modules designed specifically for your grade level.
+            </p>
+        </header>
+
+        <!-- Subjects Container -->
+        <div id="subjects" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+            <!-- Dynamically populated by the logic below -->
+        </div>
+    </div>
+
+    <script>
+        // ORIGINAL LOGIC WRAPPED IN STYLISH GENERATION
+        const params = new URLSearchParams(location.search);
+        const cls = params.get("class") || "1";
+
+        // Update Title with styling
+        document.getElementById("title").innerHTML = `Class <span class="text-indigo-500">${cls}</span> Subjects`;
+
+        const container = document.getElementById("subjects");
+        
+        // Icon mapping to keep it visual (can be expanded)
+        const icons = {
+            "Mathematics": "fa-calculator",
+            "Science": "fa-flask",
+            "English": "fa-pen-nib",
+            "Social Studies": "fa-globe-americas"
+        };
+
+        // Check if data exists
+        if (typeof subjectsData !== 'undefined' && subjectsData[cls]) {
+            subjectsData[cls].forEach((sub, index) => {
+                const icon = icons[sub] || "fa-book-open";
+                
+                const card = document.createElement("div");
+                card.className = "subject-card stagger-item p-10 rounded-[2.5rem] cursor-pointer group";
+                card.style.animationDelay = (index * 0.15) + "s";
+                
+                card.innerHTML = `
+                    <div class="icon-box w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-8 text-indigo-400">
+                        <i class="fas ${icon} text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4 group-hover:text-white transition-colors">${sub}</h2>
+                    <p class="text-slate-500 mb-8 text-sm leading-relaxed">
+                        Interactive curriculum focusing on visual mastery and concept clarity.
+                    </p>
+                    <div class="flex items-center gap-2 text-xs font-black tracking-widest text-indigo-400 group-hover:translate-x-2 transition-transform">
+                        VIEW CHAPTERS <i class="fas fa-chevron-right"></i>
+                    </div>
+                `;
+
+                card.onclick = () => {
+                    location.href = `chapters.html?class=${cls}&subject=${encodeURIComponent(sub)}`;
+                };
+
+                container.appendChild(card);
+            });
+        } else {
+            // Error handling/Empty state
+            container.innerHTML = `
+                <div class="col-span-full py-20 text-center">
+                    <p class="text-slate-500 italic">No subject data found for this class in data.js</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+classes.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Class | Smart Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --accent: #22d3ee;
+            --bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradient */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(34, 211, 238, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* Glassmorphism Card */
+        .class-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .class-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.5s;
+        }
+
+        .class-card:hover::before {
+            left: 100%;
+        }
+
+        /* Staggered Entrance Animation */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        /* Back Button Hover */
+        .back-btn {
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            color: var(--accent);
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <div class="bg-glow"></div>
+
+    <div class="max-w-6xl mx-auto">
+        <!-- Header Area -->
+        <header class="mb-12">
+            <button onclick="history.back()" class="back-btn flex items-center gap-2 text-slate-400 font-semibold mb-8 group">
+                <i class="fas fa-arrow-left transition-transform group-hover:-translate-x-1"></i> 
+                Back to Home
+            </button>
+            
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-white to-slate-500 bg-clip-text text-transparent">
+                Choose Your Level
+            </h1>
+            <p class="text-slate-400 text-lg">Select your class to begin your personalized learning journey.</p>
+        </header>
+
+        <!-- Grid of Classes -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Class 1 -->
+            <div onclick="goToSubjects(1)" class="class-card group p-8 rounded-[2.5rem] animate-fade-in" style="animation-delay: 0.1s">
+                <div class="w-16 h-16 bg-indigo-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-500/40 transition-colors">
+                    <span class="text-3xl font-bold text-indigo-400">01</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Class 1</h3>
+                <p class="text-slate-500 text-sm mb-6">Foundational visual concepts for early learners.</p>
+                <div class="flex items-center text-indigo-400 font-bold text-sm">
+                    EXPLORE <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                </div>
+            </div>
+
+            <!-- Class 2 -->
+            <div onclick="goToSubjects(2)" class="class-card group p-8 rounded-[2.5rem] animate-fade-in" style="animation-delay: 0.2s">
+                <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-500/40 transition-colors">
+                    <span class="text-3xl font-bold text-purple-400">02</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Class 2</h3>
+                <p class="text-slate-500 text-sm mb-6">Interactive stories and mathematical puzzles.</p>
+                <div class="flex items-center text-purple-400 font-bold text-sm">
+                    EXPLORE <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                </div>
+            </div>
+
+            <!-- Class 3 -->
+            <div onclick="goToSubjects(3)" class="class-card group p-8 rounded-[2.5rem] animate-fade-in" style="animation-delay: 0.3s">
+                <div class="w-16 h-16 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-cyan-500/40 transition-colors">
+                    <span class="text-3xl font-bold text-cyan-400">03</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Class 3</h3>
+                <p class="text-slate-500 text-sm mb-6">Deep dive into nature, science, and logic.</p>
+                <div class="flex items-center text-cyan-400 font-bold text-sm">
+                    EXPLORE <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                </div>
+            </div>
+
+            <!-- Class 4 -->
+            <div onclick="goToSubjects(4)" class="class-card group p-8 rounded-[2.5rem] animate-fade-in" style="animation-delay: 0.4s">
+                <div class="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500/40 transition-colors">
+                    <span class="text-3xl font-bold text-emerald-400">04</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Class 4</h3>
+                <p class="text-slate-500 text-sm mb-6">Advanced visual simulations and problem solving.</p>
+                <div class="flex items-center text-emerald-400 font-bold text-sm">
+                    EXPLORE <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Support Info -->
+        <div class="mt-20 p-8 glass-card rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-6 animate-fade-in" style="animation-delay: 0.6s">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                    <i class="fas fa-question text-xl text-slate-300"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">Not sure where to start?</h4>
+                    <p class="text-slate-400 text-sm">Take our quick placement quiz to find your level.</p>
+                </div>
+            </div>
+            <button class="px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-slate-200 transition-colors">
+                Start Quiz
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function goToSubjects(cls) {
+            // Apply a quick exit animation before navigating
+            const cards = document.querySelectorAll('.class-card');
+            cards.forEach(card => card.style.opacity = '0');
+            
+            setTimeout(() => {
+                location.href = `subjects.html?class=${cls}`;
+            }, 300);
+        }
+    </script>
+</body>
+</html>
+
+
+
+chapters.html
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapters | Smart Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="js/data.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --accent: #22d3ee;
+            --bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Animated Background */
+        .page-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 0% 100%, rgba(99, 102, 241, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* Chapter Card Styling */
+        .chapter-row {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .chapter-row:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--primary);
+            transform: scale(1.01) translateX(10px);
+            box-shadow: -10px 0 20px -10px var(--primary);
+        }
+
+        /* Number Badge */
+        .num-badge {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Staggered Entrance */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-item {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <div class="page-bg"></div>
+
+    <div class="max-w-4xl mx-auto">
+        <!-- Navigation -->
+        <nav class="mb-12">
+            <button onclick="history.back()" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors font-bold text-xs uppercase tracking-widest group">
+                <i class="fas fa-chevron-left group-hover:-translate-x-1 transition-transform"></i> 
+                Back to Subjects
+            </button>
+        </nav>
+
+        <!-- Header -->
+        <header class="mb-12 animate-item">
+            <h1 id="title" class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">
+                <!-- Injected via JS -->
+            </h1>
+            <div class="flex items-center gap-4">
+                <div class="h-1 w-20 bg-indigo-500 rounded-full"></div>
+                <p class="text-slate-400 font-medium" id="chapter-count">Loading chapters...</p>
+            </div>
+        </header>
+
+        <!-- Chapters List Container -->
+        <div id="chapters" class="space-y-4">
+            <!-- Dynamically populated -->
+        </div>
+
+        <!-- Empty State Info -->
+        <div id="empty-state" class="hidden py-20 text-center glass-card rounded-3xl animate-item">
+            <i class="fas fa-book-open text-5xl text-slate-700 mb-4"></i>
+            <p class="text-slate-500 italic">No chapters available for this subject yet.</p>
+        </div>
+    </div>
+
+    <script>
+        const p = new URLSearchParams(location.search);
+        const cls = p.get("class") || "1";
+        const subject = p.get("subject") || "";
+
+        // Header Styling
+        document.getElementById("title").innerHTML = `
+            <span class="text-slate-500 font-light">Class ${cls} /</span> ${subject}
+        `;
+
+        const container = document.getElementById("chapters");
+        
+        // Safety check for data
+        if (typeof chaptersData !== 'undefined' && chaptersData[cls] && chaptersData[cls][subject]) {
+            const list = chaptersData[cls][subject];
+            document.getElementById("chapter-count").innerText = `${list.length} Chapters Found`;
+
+            list.forEach((ch, index) => {
+                const row = document.createElement("div");
+                row.className = "chapter-row animate-item p-6 rounded-2xl flex items-center justify-between gap-4 group";
+                row.style.animationDelay = (index * 0.1) + "s";
+                
+                // Format index (e.g., 1 -> 01)
+                const displayIdx = (index + 1).toString().padStart(2, '0');
+
+                row.innerHTML = `
+                    <div class="flex items-center gap-6">
+                        <div class="num-badge w-12 h-12 flex-shrink-0 rounded-xl flex items-center justify-center text-white font-black text-lg">
+                            ${displayIdx}
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold group-hover:text-indigo-400 transition-colors">${ch.title}</h3>
+                            <p class="text-slate-500 text-sm mt-1 flex items-center gap-2">
+                                <i class="far fa-file-pdf"></i> Visual Study Material
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="hidden md:inline-block text-[10px] font-black tracking-widest text-slate-600 group-hover:text-slate-400">READ NOW</span>
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-indigo-500/20 transition-all">
+                            <i class="fas fa-play text-xs text-indigo-400"></i>
+                        </div>
+                    </div>
+                `;
+
+                row.onclick = () => {
+                    location.href = `chapter_view.html?pdf=${encodeURIComponent(ch.pdf)}`;
+                };
+
+                container.appendChild(row);
+            });
+        } else {
+            document.getElementById("empty-state").classList.remove("hidden");
+            document.getElementById("chapter-count").innerText = "0 Chapters Found";
+        }
+    </script>
+</body>
+</html>
+
+
+
+chapter_view.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter Viewer | Smart Learning AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --accent: #22d3ee;
+            --bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .pdf-container {
+            height: 85vh;
+            background: #1e293b;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+        }
+
+        iframe {
+            border: none;
+            background: white;
+        }
+
+        .sticky-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .sticky-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        .btn-ai {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .ai-loader {
+            display: none;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #94a3b8 0%, #ffffff 50%, #94a3b8 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 2s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        .gen-image {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .gen-image.ready {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        .img-wrapper {
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            min-height: 180px;
+        }
+
+        .gen-image::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+            opacity: 0.5;
+            animation: scan 1.5s linear;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .pdf-container { height: 75vh; }
+            .sticky-btn { bottom: 20px; right: 20px; }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-6 lg:p-8">
+
+    <nav class="flex items-center justify-between p-4 mb-6 rounded-2xl">
+        <button onclick="history.back()" class="flex items-center gap-2 text-slate-400 hover:text-white transition-all font-bold text-xs uppercase tracking-widest group">
+            <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> Back
+        </button>
+        <div class="text-sm font-black tracking-tighter text-slate-500">
+            SMART<span class="text-indigo-500">VIEWER</span>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto w-full flex flex-col gap-6 flex-grow">
+        <div class="pdf-container">
+            <iframe id="pdf" width="100%" height="100%" src="about:blank"></iframe>
+        </div>
+
+        <div id="visuals-area" class="pb-24">
+            <div id="loader" class="ai-loader">
+                <div class="inline-block p-6 glass-card rounded-3xl bg-slate-800/50 border border-slate-700">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-microchip animate-spin text-indigo-400 text-xl"></i>
+                        <span class="shimmer-text font-bold">AI is scanning the document and generating summaries...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="images" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Filtered AI Images appear here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="sticky-btn">
+        <button onclick="summarize()" class="btn-ai px-8 py-5 rounded-2xl flex items-center gap-3 text-white font-bold group">
+            <i class="fas fa-wand-magic-sparkles"></i>
+            <span>Summarize with AI</span>
+        </button>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(location.search);
+        const pdfFile = params.get("pdf") || ""; // Expected: "1_eng1.pdf", "2_math3.pdf", etc.
+        
+        if(pdfFile) {
+            document.getElementById("pdf").src = "pdfs/" + pdfFile;
+        }
+
+        function summarize() {
+            const loader = document.getElementById("loader");
+            const imgBox = document.getElementById("images");
+            
+            imgBox.innerHTML = "";
+            loader.style.display = "block";
+            
+            window.scrollTo({
+                top: document.getElementById('visuals-area').offsetTop - 100,
+                behavior: 'smooth'
+            });
+
+            // Dataset mapping to: [Class][SubjectKey][Chapter][Image#]
+            const allVisualData = [
+                // Class 1 English Chapter 1
+                { src: 'images/1e11.png', delay: 4500, label: 'Vocabulary Scan' },
+                { src: 'images/1e12.png', delay: 6800, label: 'Language Pattern' },
+                { src: 'images/1e13.png', delay: 8500, label: 'Contextual Map' },
+
+                // Class 1 Maths Chapter 1
+                { src: 'images/1m11.png', delay: 4500, label: 'Vocabulary Scan' },
+                { src: 'images/1m12.png', delay: 6800, label: 'Language Pattern' },
+
+                // Class 2 English Chapter 1
+                { src: 'images/2e11.png', delay: 4500, label: 'Vocabulary Scan' },
+                { src: 'images/2e12.png', delay: 6800, label: 'Language Pattern' },
+
+                // Class 2 English Chapter 2
+                { src: 'images/2e21.png', delay: 4500, label: 'Vocabulary Scan' },
+                { src: 'images/2e22.png', delay: 6800, label: 'Language Pattern' },
+
+                // Class 2 Maths Chapter 1
+                { src: 'images/2m12.png', delay: 5500, label: 'Number Analysis' },
+
+                // Class 2 Maths Chapter 3
+                { src: 'images/2m31.png', delay: 7800, label: 'Calculation Matrix' },
+                { src: 'images/2m33.png', delay: 9500, label: 'Geometric Insight' },
+
+                // Class 2 EVS Chapter 1
+                { src: 'images/2evs11.png', delay: 4500, label: 'Eco System' },
+                { src: 'images/2evs12.png', delay: 7800, label: 'Natural Cycle' },
+                { src: 'images/2evs13.png', delay: 10500, label: 'Bio Map' }
+            ];
+
+            /**
+             * NEW LOGIC for parsing: 1_eng1.pdf
+             */
+            let classPart = "1";
+            let subKey = "e";
+            let chapPart = "1";
+
+            if (pdfFile) {
+                // Split by underscore: ["1", "eng1.pdf"]
+                const mainParts = pdfFile.split('_');
+                if (mainParts.length >= 2) {
+                    classPart = mainParts[0]; // e.g., "1"
+                    
+                    const secondHalf = mainParts[1].toLowerCase(); // e.g., "eng1.pdf"
+                    
+                    // Identify subject shorthand
+                    if (secondHalf.includes('eng')) subKey = 'e';
+                    else if (secondHalf.includes('math')) subKey = 'm';
+                    else if (secondHalf.includes('evs')) subKey = 'evs';
+
+                    // Identify chapter number (digits after the subject name)
+                    const chapterMatch = secondHalf.match(/\d+/);
+                    if (chapterMatch) chapPart = chapterMatch[0];
+                }
+            }
+
+            // Construct prefix for matching (e.g., "1e1")
+            const targetPrefix = `${classPart}${subKey}${chapPart}`;
+            console.log("Analyzing PDF:", pdfFile, "Target Prefix:", targetPrefix);
+
+            const filteredData = allVisualData.filter(item => {
+                const fileName = item.src.split('/').pop(); 
+                return fileName.startsWith(targetPrefix);
+            });
+
+            if(filteredData.length === 0) {
+                setTimeout(() => {
+                    loader.style.display = "none";
+                    imgBox.innerHTML = `
+                        <div class="col-span-full text-center p-12 bg-slate-800/30 rounded-3xl border border-dashed border-slate-700">
+                            <i class="fas fa-search text-slate-600 text-4xl mb-4"></i>
+                            <p class="text-slate-400 italic">No specific AI visuals found for this chapter.</p>
+                            <p class="text-[10px] text-slate-600 mt-2 uppercase tracking-widest font-bold">Trace ID: ${targetPrefix}</p>
+                        </div>`;
+                }, 1000);
+                return;
+            }
+
+            filteredData.forEach((item, index) => {
+                setTimeout(() => {
+                    if(index === 0) loader.style.display = "none";
+
+                    const card = document.createElement("div");
+                    card.className = "gen-image bg-slate-800/50 p-4 border border-slate-700 h-full flex flex-col";
+                    card.innerHTML = `
+                        <div class="img-wrapper flex-grow">
+                            <img src="${item.src}" 
+                                 class="w-full h-auto max-h-64 object-contain rounded-lg" 
+                                 onerror="this.src='https://via.placeholder.com/400x300/1e293b/6366f1?text=${targetPrefix}+Visual'">
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-2">
+                            <span class="text-[10px] font-black tracking-widest text-slate-500 uppercase">${item.label || 'AI Analysis'}</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[9px] text-slate-600 font-mono">${item.src.split('/').pop()}</span>
+                                <i class="fas fa-check-circle text-emerald-500 text-xs"></i>
+                            </div>
+                        </div>
+                    `;
+                    imgBox.appendChild(card);
+                    setTimeout(() => card.classList.add('ready'), 50);
+                }, item.delay);
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+data.js
+
+
+/* =========================
+   SUBJECTS BY CLASS
+========================= */
+
+const subjectsData = {
+  1: ["English", "Mathematics"],
+  2: ["English", "Mathematics", "EVS"]
+};
+
+
+/* =========================
+   CHAPTERS + PDF MAPPING
+========================= */
+
+const chaptersData = {
+
+  /* ---------- CLASS 1 ---------- */
+  1: {
+
+    English: [
+      { title: "My Family and Me", pdf: "1_eng1.pdf" },
+      { title: "Two Little Hands (Poem)", pdf: "1_eng2.pdf" },
+      { title: "Picture Time", pdf: "1_eng3.pdf" },
+      { title: "The Cap-seller and the Monkeys", pdf: "1_eng4.pdf" },
+      { title: "A Farm", pdf: "1_eng5.pdf" },
+      { title: "Fun with Pictures", pdf: "1_eng6.pdf" },
+      { title: "The Food We Eat", pdf: "1_eng7.pdf" },
+      { title: "The Four Seasons", pdf: "1_eng8.pdf" },
+      { title: "Anandi's Rainbow", pdf: "1_eng9.pdf" }
+    ],
+
+    Mathematics: [
+      { title: "Finding the Furry Cat!", pdf: "1_math1.pdf" },
+      { title: "What is Long?, What is Round?", pdf: "1_math2.pdf" },
+      { title: "Mango Treat", pdf: "1_math3.pdf" },
+      { title: "Making 10", pdf: "1_math4.pdf" },
+      { title: "How Many?", pdf: "1_math5.pdf" },
+      { title: "Vegetable Farm", pdf: "1_math6.pdf" },
+      { title: "Lina’s Family", pdf: "1_math7.pdf" },
+      { title: "Fun with Numbers", pdf: "1_math8.pdf" }
+    ]
+  },
+
+
+  /* ---------- CLASS 2 ---------- */
+  2: {
+
+    English: [
+      { title: "My Bicycle", pdf: "2_eng1.pdf" },
+      { title: "Picture Reading", pdf: "2_eng2.pdf" },
+      { title: "It is Fun", pdf: "2_eng3.pdf" },
+      { title: "Seeing without Seeing", pdf: "2_eng4.pdf" },
+      { title: "Come Back Soon", pdf: "2_eng5.pdf" },
+      { title: "Between Home and School", pdf: "2_eng6.pdf" },
+      { title: "This is My Town", pdf: "2_eng7.pdf" },
+      { title: "A Show of Clouds", pdf: "2_eng8.pdf" },
+      { title: "My Name", pdf: "2_eng9.pdf" },
+      { title: "The Crow", pdf: "2_eng10.pdf" },
+      { title: "The Smart Monkey", pdf: "2_eng11.pdf" },
+      { title: "Little Drops of Water", pdf: "2_eng12.pdf" },
+      { title: "We are all Indians", pdf: "2_eng13.pdf" }
+    ],
+
+    Mathematics: [
+      { title: "A Day at the Beach (Counting in Groups)", pdf: "2_math1.pdf" },
+      { title: "Shapes Around Us (3D Shapes)", pdf: "2_math2.pdf" },
+      { title: "Fun with Numbers (1 to 100)", pdf: "2_math3.pdf" },
+      { title: "Shadow Story (2D Shapes)", pdf: "2_math4.pdf" },
+      { title: "Playing with Lines", pdf: "2_math5.pdf" },
+      { title: "Decoration for Festival", pdf: "2_math6.pdf" },
+      { title: "Rani’s Gift", pdf: "2_math7.pdf" },
+      { title: "Grouping and Sharing", pdf: "2_math8.pdf" },
+      { title: "Which Season is it?", pdf: "2_math9.pdf" },
+      { title: "Fun at the Fair", pdf: "2_math10.pdf" },
+      { title: "Data Handling", pdf: "2_math11.pdf" }
+    ],
+
+    EVS: [
+      { title: "Growing Up", pdf: "2_evs1.pdf" },
+      { title: "Our Sense Organs", pdf: "2_evs2.pdf" },
+      { title: "Food and Water", pdf: "2_evs3.pdf" },
+      { title: "Clothes to Wear", pdf: "2_evs4.pdf" },
+      { title: "Different House", pdf: "2_evs5.pdf" },
+      { title: "Our Daily Routine", pdf: "2_evs6.pdf" },
+      { title: "Celebrations with Family", pdf: "2_evs7.pdf" },
+      { title: "Festivals We Celebrate", pdf: "2_evs8.pdf" },
+      { title: "Our Neighbours", pdf: "2_evs9.pdf" },
+      { title: "Animals and their Shelters", pdf: "2_evs10.pdf" },
+      { title: "Natural and Man-made Things", pdf: "2_evs11.pdf" },
+      { title: "Weather and Seasons", pdf: "2_evs12.pdf" },
+      { title: "Means of Communication", pdf: "2_evs13.pdf" },
+      { title: "The Earth", pdf: "2_evs14.pdf" },
+      { title: "The Sun, the Moon and the Stars", pdf: "2_evs15.pdf" }
+    ]
+  }
+};
+
+
+

@@ -1,0 +1,285 @@
+
+
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Learning | Future of Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --accent: #22d3ee;
+            --bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradient */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Custom Button */
+        .btn-glow {
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .btn-glow::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        .btn-glow:hover::after {
+            left: 120%;
+        }
+
+        /* Simple Loading bar for visual interest */
+        .progress-line {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 1.5s ease;
+        }
+
+        .tag-pill {
+            background: rgba(99, 102, 241, 0.2);
+            color: #c7d2fe;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="flex justify-between items-center p-6 max-w-7xl mx-auto">
+        <div class="text-2xl font-extrabold tracking-tighter flex items-center gap-2">
+            <span class="bg-gradient-to-r from-indigo-500 to-cyan-400 bg-clip-text text-transparent">SMART</span>LEARN <span></span> WITH <span class="bg-gradient-to-r from-indigo-500 to-cyan-400 bg-clip-text text-transparent">2ND CLASS HELPER</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-semibold text-slate-400">
+            <a href="#" class="hover:text-white transition-colors">Courses</a>
+            <a href="#" class="hover:text-white transition-colors">Mentors</a>
+            <a href="#" class="hover:text-white transition-colors">Pricing</a>
+        </div>
+       
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-16 pb-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="tag-pill mb-6 reveal">✨ The Future of Learning is Here</div>
+            <h1 class="text-5xl md:text-8xl font-extrabold mb-8 reveal leading-tight">
+                Learn <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent italic">Smartly</span><br>
+                For Young Minds 
+            </h1>
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 reveal">
+                Interactive visual experiences designed to turn complex concepts into child's play. Join 50,000+ students worldwide.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center reveal">
+                <button onclick="startLearning()" class="btn-glow px-10 py-4 bg-indigo-600 rounded-2xl font-bold text-lg shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transform hover:scale-105 active:scale-95 transition-all">
+                    Start Learning Now <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+                <button class="px-10 py-4 glass-card rounded-2xl font-bold text-lg hover:bg-slate-800 transition-all">
+                    Watch Demo
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating Decorative Elements -->
+        <div class="hidden lg:block absolute top-1/4 left-10 float-anim opacity-20">
+            <i class="fas fa-atom text-7xl text-indigo-500"></i>
+        </div>
+        <div class="hidden lg:block absolute bottom-1/4 right-10 float-anim opacity-20" style="animation-delay: -3s">
+            <i class="fas fa-brain text-7xl text-purple-500"></i>
+        </div>
+    </header>
+
+    <!-- Features Grid -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="glass-card p-8 rounded-3xl reveal">
+                <div class="w-14 h-14 bg-indigo-500/20 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-vr-cardboard text-2xl text-indigo-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Visual Learning</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    Interactive 3D models and simulations that make science and math come alive right in your browser.
+                </p>
+                <div class="mt-6 pt-6 border-t border-slate-800 flex justify-between items-center">
+                    <span class="text-xs font-bold text-indigo-400">LEARN MORE</span>
+                    <i class="fas fa-chevron-right text-xs text-slate-600"></i>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-card p-8 rounded-3xl reveal" style="transition-delay: 0.1s">
+                <div class="w-14 h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-gamepad text-2xl text-purple-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Gamified Path</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    Earn badges, unlock new levels, and compete with friends in a safe, educational environment.
+                </p>
+                <div class="mt-6 pt-6 border-t border-slate-800 flex justify-between items-center">
+                    <span class="text-xs font-bold text-purple-400">VIEW RANKINGS</span>
+                    <i class="fas fa-chevron-right text-xs text-slate-600"></i>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-card p-8 rounded-3xl reveal" style="transition-delay: 0.2s">
+                <div class="w-14 h-14 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-bolt text-2xl text-cyan-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Smart Analytics</h3>
+                <p class="text-slate-400 leading-relaxed">
+                    Parents and students get real-time insights into learning patterns and focus areas.
+                </p>
+                <div class="mt-6 pt-6 border-t border-slate-800 flex justify-between items-center">
+                    <span class="text-xs font-bold text-cyan-400">DASHBOARD</span>
+                    <i class="fas fa-chevron-right text-xs text-slate-600"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Action Area -->
+    <section class="max-w-5xl mx-auto px-6 py-20 text-center">
+        <div class="glass-card p-12 rounded-[3rem] relative overflow-hidden">
+            <div class="relative z-10">
+                <h2 class="text-4xl font-bold mb-6">Ready to change the way you learn?</h2>
+                <p class="text-slate-400 mb-8 max-w-lg mx-auto">Join the educational revolution. No credit card required to start your first visual module.</p>
+                <div class="flex justify-center">
+                    <div class="w-full max-w-xs">
+                        <div class="progress-line rounded-full mb-4" id="loadBar"></div>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold" id="statusText">System Ready</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Background Decoration for CTA -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-600/10 blur-[100px] rounded-full"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-cyan-600/10 blur-[100px] rounded-full"></div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer class="p-10 text-center text-slate-600 text-sm">
+        <p>&copy; 2024 Smart Learning Initiative. Designed for the curious.</p>
+    </footer>
+
+    <script>
+        // Reveal Animations on Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+
+        // Initial reveal
+        window.onload = () => {
+            reveal();
+        };
+
+        // Simulated "Learning Start" interaction
+        function startLearning() {
+            const bar = document.getElementById('loadBar');
+            const status = document.getElementById('statusText');
+            
+            bar.style.width = '100%';
+            status.innerText = "Initializing Modules...";
+            status.style.color = "#22d3ee";
+
+            setTimeout(() => {
+                // In a real app, this would navigate to classes.html
+                // For this demo, we'll just show a success state
+                status.innerText = "Redirecting to Classroom...";
+                setTimeout(() => {
+                    location.href = 'classes.html';
+                }, 1000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
